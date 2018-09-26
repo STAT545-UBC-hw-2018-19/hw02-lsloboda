@@ -4,8 +4,8 @@ hw02-gapminder
 Exploration of the gapminder data set
 =====================================
 
-1. Initialize the data
-----------------------
+Initialize the data
+-------------------
 
 -   Load the gapminder and tidyverse libraries:
 
@@ -29,8 +29,8 @@ library(tidyverse)
 message=FALSE
 ```
 
-2. Explore the data
--------------------
+Explore the data
+----------------
 
 -   Scope the data types and sizes:
 
@@ -131,8 +131,8 @@ summary(gapminder)
 
 -   There are multiple ways to determine the size and extent of data (e.g. str, typeof, head, summary). Multiple ways assessing the data can be useful for error checking based on expected redundancies (e.g. str() provides information that is redundant with the information obtained from ncol() and nrow())
 
-3. Explore the variables
-------------------------
+Explore the variables
+---------------------
 
 -   The categorical variable *continent* and the quantitative variable *gdpPercap* are selected. The range of each is determined below:
 
@@ -195,8 +195,8 @@ ggplot(gapminder, aes(continent, gdpPercap)) +
 -   The variance of gdpPercap is 97169410
 -   The box plot and violin plot are both graphical interpretations of the distribution
 
-4. Using filter(), select() and %&gt;% to explore various plot types
---------------------------------------------------------------------
+Using filter(), select() and %&gt;% to explore various plot types
+-----------------------------------------------------------------
 
 -   Filter() and select() are used to identify a subset of the data based on specific criteria
 -   Scatterplots are useful for making observation about data; trend line can also be added
@@ -210,16 +210,9 @@ gapminder %>%
     geom_point()
 ```
 
-![](hw02-gapminder_files/figure-markdown_github/unnamed-chunk-7-1.png) \* Histograms are useful for determining the distribution of data (e.g. Gaussian, bimodal):
+![](hw02-gapminder_files/figure-markdown_github/unnamed-chunk-7-1.png)
 
-``` r
-ggplot(gapminder, aes(gdpPercap)) +
-  geom_histogram()
-```
-
-    ## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
-
-![](hw02-gapminder_files/figure-markdown_github/unnamed-chunk-8-1.png)
+-   Histograms are useful for determining the distribution of data (e.g. Gaussian, bimodal):
 
 ``` r
 ggplot(gapminder, aes(gdpPercap)) +
@@ -229,7 +222,7 @@ ggplot(gapminder, aes(gdpPercap)) +
 
     ## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
 
-![](hw02-gapminder_files/figure-markdown_github/unnamed-chunk-8-2.png) \* Faceting is useful for illustrating data for several different factors (e.g. GDP per capita over time for each continent):
+![](hw02-gapminder_files/figure-markdown_github/unnamed-chunk-8-1.png) \* Faceting is useful for illustrating data for several different factors (e.g. GDP per capita over time for each continent):
 
 ``` r
 ggplot(gapminder, aes(year, gdpPercap)) +
@@ -242,5 +235,5 @@ ggplot(gapminder, aes(year, gdpPercap)) +
 ### Conclusions
 
 -   Many types of plots can be used to explore data trends and distributions using R
--   The data can be broken down into subsets using functions like filter() and select() to make it easier to work with
+-   The data can be broken down into subsets using functions like filter() and select() to make it more manageable
 -   Piping is a convenient way to feed a variable into a plot or function
