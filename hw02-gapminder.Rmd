@@ -1,0 +1,105 @@
+---
+title: "hw02-gapminder"
+output:
+  github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+#Exploration of the gapminder data set
+
+##1. Initialize the data
+
+* Load the gapminder and tidyverse libraries:
+
+```{r}
+library(gapminder)
+library(tidyverse)
+```
+
+##2. Explore the data
+
+* Scope the data types and sizes:
+
+```{r}
+(typeof(gapminder))
+(str(gapminder))
+class(gapminder)
+nrow(gapminder)
+ncol(gapminder)
+length(gapminder)
+head(gapminder)
+summary(gapminder)
+
+```
+
+## Conclusions:
+* Type: list (using typeof())
+* Rows:`r nrow(gapminder)`; Columns:`r ncol(gapminder)
+* Gapminder contains the classes: tbl_df (i.e. tibble), tbl (i.e. table) and df (i.e. data frame)
+* Variable types:
+
+|**Variable**| **Type**              |
+|------------|-----------------------|
+| country    | factor w/ 142 levels: |
+| continent  | factor w/ 5 levels    |
+| year       | int                   |
+| lifeExp    | num                   |
+| pop        | int                   |
+| gpdPercap  | num                   |
+
+* There are multiple ways to determine the size and extent of data (e.g. str, typeof, head, summary). Multiple ways assessing the data can be useful for error checking based on expected redundancies (e.g. str() provides information that is redundant with the information obtained from ncol() and nrow())
+
+* The categorical variable *continent* and the quantitative variable *gdpPercap* are selected. The range of each is determined below:
+```{r}
+(range(gapminder$gdpPercap))
+(levels(gapminder$continent))
+```
+
+* The spread and distribution of *gdpPercap* is explored below:
+
+```{r}
+gdp <- select(gapminder, gdpPercap)
+n <- nrow(gdp)
+mu <- sum(gdp)/n
+diffs <- gdp - mu
+variance <- sum(diffs^2) / (n-1)
+variance
+(var(gdp))
+```
+
+* The calculation of var() and variance using a manual method is used to validate the built-in function
+
+```{r}
+a <- ggplot(gapminder, aes(continent, gdpPercap)) +
+  #scale_y_log10() +
+  geom_boxplot()
+a
+```
+```{r}
+a + geom_violin()
+
+##Use filter, select and piping
+
+
+
+efefe
+
+```{r}
+a + geom_violin() +
+  geom_jitter(alpha=0.25)
+
+gapminder %>% 
+  filter(country == "Canada") %>% 
+  ggplot(aes(year, lifeExp)) +
+  geom_line() +
+  geom_point()
+
+gvsl <- ggplot(gapminder, aes(gdpPercap, lifeExp)) +
+           scale_x_log10()
+
+
+```
+
