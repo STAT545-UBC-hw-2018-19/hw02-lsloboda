@@ -25,6 +25,10 @@ library(tidyverse)
     ## x dplyr::filter() masks stats::filter()
     ## x dplyr::lag()    masks stats::lag()
 
+``` r
+message=FALSE
+```
+
 2. Explore the data
 -------------------
 
@@ -112,7 +116,7 @@ summary(gapminder)
 ### Conclusions:
 
 -   Type: list (using typeof())
--   Rows:1704; Columns:\`r ncol(gapminder)
+-   Rows:1704; Columns:6
 -   Gapminder contains the classes: tbl\_df (i.e. tibble), tbl (i.e. table) and df (i.e. data frame)
 -   Variable types:
 
@@ -128,7 +132,7 @@ summary(gapminder)
 -   There are multiple ways to determine the size and extent of data (e.g. str, typeof, head, summary). Multiple ways assessing the data can be useful for error checking based on expected redundancies (e.g. str() provides information that is redundant with the information obtained from ncol() and nrow())
 
 3. Explore the variables
-========================
+------------------------
 
 -   The categorical variable *continent* and the quantitative variable *gdpPercap* are selected. The range of each is determined below:
 
@@ -234,3 +238,9 @@ ggplot(gapminder, aes(year, gdpPercap)) +
 ```
 
 ![](hw02-gapminder_files/figure-markdown_github/unnamed-chunk-9-1.png)
+
+### Conclusions
+
+-   Many types of plots can be used to explore data trends and distributions using R
+-   The data can be broken down into subsets using functions like filter() and select() to make it easier to work with
+-   Piping is a convenient way to feed a variable into a plot or function
