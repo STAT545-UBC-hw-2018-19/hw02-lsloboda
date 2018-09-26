@@ -4,9 +4,9 @@ output:
   github_document
 ---
 
-#Exploration of the gapminder data set
+# Exploration of the gapminder data set
 
-##1. Initialize the data
+## 1. Initialize the data
 
 * Load the gapminder and tidyverse libraries:
 
@@ -15,7 +15,7 @@ library(gapminder)
 library(tidyverse)
 ```
 
-##2. Explore the data
+## 2. Explore the data
 
 * Scope the data types and sizes:
 
@@ -48,7 +48,7 @@ summary(gapminder)
 
 * There are multiple ways to determine the size and extent of data (e.g. str, typeof, head, summary). Multiple ways assessing the data can be useful for error checking based on expected redundancies (e.g. str() provides information that is redundant with the information obtained from ncol() and nrow())
 
-#3. Explore the variables
+# 3. Explore the variables
 
 * The categorical variable *continent* and the quantitative variable *gdpPercap* are selected. The range of each is determined below:
 ```{r}
@@ -80,12 +80,12 @@ ggplot(gapminder, aes(continent, gdpPercap)) +
 
 ```
 
-###Conclusions
+### Conclusions
 * The mean of gdpperCap is 7215.327
 * The variance of gdpPercap is 97169410
 * The box plot and violin plot are both graphical interpretations of the distribution
 
-##4. Using filter(), select() and %>% to explore various plot types
+## 4. Using filter(), select() and %>% to explore various plot types
 
 * Filter() and select() are used to identify a subset of the data based on specific criteria
 * Scatterplots are useful for making observation about data; trend line can also be added
