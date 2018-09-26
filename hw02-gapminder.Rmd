@@ -4,10 +4,6 @@ output:
   github_document
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
-
 #Exploration of the gapminder data set
 
 ##1. Initialize the data
@@ -35,7 +31,7 @@ summary(gapminder)
 
 ```
 
-## Conclusions:
+### Conclusions:
 * Type: list (using typeof())
 * Rows:`r nrow(gapminder)`; Columns:`r ncol(gapminder)
 * Gapminder contains the classes: tbl_df (i.e. tibble), tbl (i.e. table) and df (i.e. data frame)
@@ -52,54 +48,71 @@ summary(gapminder)
 
 * There are multiple ways to determine the size and extent of data (e.g. str, typeof, head, summary). Multiple ways assessing the data can be useful for error checking based on expected redundancies (e.g. str() provides information that is redundant with the information obtained from ncol() and nrow())
 
+#3. Explore the variables
+
 * The categorical variable *continent* and the quantitative variable *gdpPercap* are selected. The range of each is determined below:
 ```{r}
 (range(gapminder$gdpPercap))
 (levels(gapminder$continent))
 ```
 
-* The spread and distribution of *gdpPercap* is explored below:
+* The spread and distribution of *gdpPercap* is explored below; The function var() versus variance calculated using a manual method is used to error check
 
 ```{r}
 gdp <- select(gapminder, gdpPercap)
 n <- nrow(gdp)
-mu <- sum(gdp)/n
+(mu <- sum(gdp)/n)
 diffs <- gdp - mu
 variance <- sum(diffs^2) / (n-1)
 variance
 (var(gdp))
 ```
 
-* The calculation of var() and variance using a manual method is used to validate the built-in function
+* The box plot and violin plot are used to explore the shape of the data
 
 ```{r}
-a <- ggplot(gapminder, aes(continent, gdpPercap)) +
-  #scale_y_log10() +
+ggplot(gapminder, aes(continent, gdpPercap)) +
   geom_boxplot()
-a
 ```
 ```{r}
-a + geom_violin()
+ggplot(gapminder, aes(continent, gdpPercap)) +
+  geom_violin()
 
-##Use filter, select and piping
+```
 
+###Conclusions
+* The mean of gdpperCap is 7215.327
+* The variance of gdpPercap is 97169410
+* The box plot and violin plot are both graphical interpretations of the distribution
 
+##4. Using filter(), select() and %>% to explore various plot types
 
-efefe
+* Filter() and select() are used to identify a subset of the data based on specific criteria
+* Scatterplots are useful for making observation about data; trend line can also be added
+* The scatterplot below shows the GDP per capita over time in Germany:
 
 ```{r}
-a + geom_violin() +
-  geom_jitter(alpha=0.25)
-
 gapminder %>% 
-  filter(country == "Canada") %>% 
-  ggplot(aes(year, lifeExp)) +
-  geom_line() +
+  select(year, gdpPercap, country) %>% 
+  filter(country == "Germany") %>% 
+  ggplot(aes(year, gdpPercap)) +
+    geom_point()
+```
+* Histograms are useful for determining the distribution of data (e.g. Gaussian, bimodal):
+
+```{r}
+ggplot(gapminder, aes(gdpPercap)) +
+  geom_histogram()
+
+ggplot(gapminder, aes(gdpPercap)) +
+  geom_histogram(aes(y=..density..)) +
+  geom_density()
+```
+* Faceting is useful for illustrating data for several different factors (e.g. GDP per capita over time for each continent):
+
+```{r}
+ggplot(gapminder, aes(year, gdpPercap)) +
+  facet_wrap( ~ continent, scale = "free_x") +
   geom_point()
-
-gvsl <- ggplot(gapminder, aes(gdpPercap, lifeExp)) +
-           scale_x_log10()
-
-
 ```
 
