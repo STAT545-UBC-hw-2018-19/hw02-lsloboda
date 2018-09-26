@@ -13,7 +13,6 @@ output:
 ```{r}
 library(gapminder)
 library(tidyverse)
-message=FALSE
 ```
 
 ## Explore the data
@@ -106,6 +105,7 @@ ggplot(gapminder, aes(gdpPercap)) +
   geom_histogram(aes(y=..density..)) +
   geom_density()
 ```
+
 * Faceting is useful for illustrating data for several different factors (e.g. GDP per capita over time for each continent):
 
 ```{r}

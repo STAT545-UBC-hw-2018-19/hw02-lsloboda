@@ -25,10 +25,6 @@ library(tidyverse)
     ## x dplyr::filter() masks stats::filter()
     ## x dplyr::lag()    masks stats::lag()
 
-``` r
-message=FALSE
-```
-
 Explore the data
 ----------------
 
@@ -222,7 +218,9 @@ ggplot(gapminder, aes(gdpPercap)) +
 
     ## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
 
-![](hw02-gapminder_files/figure-markdown_github/unnamed-chunk-8-1.png) \* Faceting is useful for illustrating data for several different factors (e.g. GDP per capita over time for each continent):
+![](hw02-gapminder_files/figure-markdown_github/unnamed-chunk-8-1.png)
+
+-   Faceting is useful for illustrating data for several different factors (e.g. GDP per capita over time for each continent):
 
 ``` r
 ggplot(gapminder, aes(year, gdpPercap)) +
